@@ -5,6 +5,7 @@ import com.klu.model.Role;
 import com.klu.model.User;
 import com.klu.repository.UserRepository;
 import org.springframework.security.authentication.*;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +18,21 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final OtpService otpService;
     private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     public AuthService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        OtpService otpService,
-                       AuthenticationManager authenticationManager) {
+                       AuthenticationManager authenticationManager,
+                       JwtService jwtService,
+                       UserDetailsServiceImpl userDetailsService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.otpService = otpService;
         this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
+        this.userDetailsService = userDetailsService;
     }
 
     public ApiResponse register(RegisterRequest request) {
@@ -76,6 +83,9 @@ public class AuthService {
             throw new RuntimeException("Please verify your account via OTP first");
         }
 
-        return new AuthResponse("Login successful", null);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+        String jwtToken = jwtService.generateToken(userDetails);
+
+        return new AuthResponse("Login successful", jwtToken);
     }
 }
