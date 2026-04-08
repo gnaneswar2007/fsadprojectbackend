@@ -1,0 +1,11 @@
+target/
+.git
+.gitignore
+.maven
+.mvn
+*.log
+*.md
+node_modules
+.env
+.env.local
+HELP.md
