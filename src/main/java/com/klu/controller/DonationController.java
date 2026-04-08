@@ -26,7 +26,7 @@ public class DonationController {
     public DonationController(DonationService donationService) {
         this.donationService = donationService;
     }
-
+//get mapping
     @GetMapping("/stats")
     public ResponseEntity<DonationStatsResponse> stats() {
         return ResponseEntity.ok(donationService.getStats());
