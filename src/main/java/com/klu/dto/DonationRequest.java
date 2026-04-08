@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class DonationRequest {
-
+//json property
     @JsonProperty("donor_email")
     @NotBlank
     private String donorEmail;
