@@ -13,8 +13,10 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173") // React frontend URL
-                        .allowedMethods("GET", "POST", "PUT", "DELETE","OPTIONS");
+                        .allowedOrigins("http://localhost:5173", "https://fsadproject-indol.vercel.app")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
