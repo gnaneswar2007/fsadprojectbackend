@@ -46,6 +46,7 @@ public class SecurityConfig {
                         "/webjars/**"
                 ).permitAll()
                 .requestMatchers("/api/auth/**").permitAll() // Allow all auth endpoints (register, verify-otp, resend-otp, login)
+                .requestMatchers("/").permitAll() // Allow Railway health check
                 .anyRequest().authenticated() // Protect other endpoints
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless session
