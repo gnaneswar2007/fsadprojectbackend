@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 
-// @Service - Disabled since OTP service is no longer used
+@Service
 public class OtpService {
 
     private final OtpTokenRepository otpTokenRepository;
