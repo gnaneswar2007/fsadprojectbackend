@@ -23,7 +23,7 @@ public class EmailService {
     }
 
 
-    public void sendOtpMail(String toEmail, String otp) throws RuntimeException {
+    public void sendOtpMail(String toEmail, String otp) {
         try {
             log.info("Sending OTP email to: {}", toEmail);
             
