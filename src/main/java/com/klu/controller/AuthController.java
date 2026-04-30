@@ -20,20 +20,11 @@ public class AuthController {
         try {
             return ResponseEntity.ok(authService.register(request));
         } catch (Exception e) {
-            return ResponseEntity.ok(new ApiResponse("Registration successful. Please check your email for OTP."));
+            return ResponseEntity.ok(new ApiResponse(e.getMessage()));
         }
     }
 
-    @PostMapping("/verify-otp")
-    public ResponseEntity<ApiResponse> verifyOtp(@RequestBody VerifyOtpRequest request) {
-        return ResponseEntity.ok(authService.verifyOtp(request));
-    }
-
-    @PostMapping("/resend-otp")
-    public ResponseEntity<ApiResponse> resendOtp(@RequestBody OtpRequest request) {
-        return ResponseEntity.ok(authService.resendOtp(request));
-    }
-
+    
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
