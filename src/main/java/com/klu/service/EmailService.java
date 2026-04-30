@@ -42,10 +42,10 @@ public class EmailService {
             log.info("OTP email sent successfully to: {} in {}ms", toEmail, (endTime - startTime));
         } catch (MessagingException e) {
             log.error("Failed to send OTP email to: {}. Error: {}", toEmail, e.getMessage());
-            throw new RuntimeException("Failed to send OTP email. Please check email configuration.");
+            // Don't throw exception - just log the error
         } catch (Exception e) {
             log.error("Unexpected error sending OTP email to: {}. Error: {}", toEmail, e.getMessage());
-            throw new RuntimeException("Failed to send OTP email. Please check email configuration.");
+            // Don't throw exception - just log the error
         }
     }
 }
