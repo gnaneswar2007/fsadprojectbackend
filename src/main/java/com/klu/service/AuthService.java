@@ -16,20 +16,17 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final OtpService otpService;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final UserDetailsServiceImpl userDetailsService;
 
     public AuthService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
-                       OtpService otpService,
                        AuthenticationManager authenticationManager,
                        JwtService jwtService,
                        UserDetailsServiceImpl userDetailsService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        this.otpService = otpService;
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
